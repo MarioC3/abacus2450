@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
@@ -22,7 +27,7 @@ h4 {font-size: 1.5em;}
 
 small, .font_small {font-size: 0.667em;}
 
-.container {
+.wrapper {
     margin-top: 150px;
     display: flex;
     flex-direction: column;
@@ -30,13 +35,29 @@ small, .font_small {font-size: 0.667em;}
     align-items: center;
 }
 
-.container img {
+.wrapper img {
     width: 81px;
     margin: 20px;
 }
 
-.container h4 {
-    letter-spacing: 15px;  
-    margin: 0;
+.wrapper h1 {
+    letter-spacing: 35px;  
+    margin: 10px 0;
     font-weight: 100;
+}
+
+.wrapper h4 {
+    letter-spacing: 5px;  
+    font-weight: 200;
+    margin-bottom: 50px;
+}
+
+.getStartedButton {
+    padding: 5px 35px;
+    margin-bottom: 50px;
+}
+
+.getStartedButton:hover {
+    background: #D25858;
+    color: white;
 }
