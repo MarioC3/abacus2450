@@ -26,38 +26,3 @@ h3 {font-size: 2.25em;}
 h4 {font-size: 1.5em;}
 
 small, .font_small {font-size: 0.667em;}
-
-.wrapper {
-    margin-top: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.wrapper img {
-    width: 81px;
-    margin: 20px;
-}
-
-.wrapper h1 {
-    letter-spacing: 35px;  
-    margin: 10px 0;
-    font-weight: 100;
-}
-
-.wrapper h4 {
-    letter-spacing: 5px;  
-    font-weight: 200;
-    margin-bottom: 50px;
-}
-
-.getStartedButton {
-    padding: 5px 35px;
-    margin-bottom: 50px;
-}
-
-.getStartedButton:hover {
-    background: #D25858;
-    color: white;
-}
