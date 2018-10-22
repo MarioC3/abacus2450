@@ -21,6 +21,3 @@ getStartedButton.click(()=> {
         closeModal();
     })
 })
-
-
-
