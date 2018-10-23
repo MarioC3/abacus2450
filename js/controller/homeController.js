@@ -1,3 +1,6 @@
+let app = $("#app")[0];
+app.innerHTML = homeViewTemplate;
+
 //Modal
 let getStartedButton = $(".getStartedButton");
 getStartedButton.click(()=> {
@@ -22,6 +25,8 @@ getStartedButton.click(()=> {
     })
 })
 
+
+//Mobile not compatible
 let windowWidth = window.innerWidth;
 if (windowWidth < 600) {
     let mobileModal = $(".notSupportedModal");
@@ -29,3 +34,37 @@ if (windowWidth < 600) {
     let overAllContainer = $(".overAllContainer");
     overAllContainer.css('display', 'none');
 }
+
+//level1 choose
+let level1 = $(".level1");
+level1.click(()=> {
+    $.get("./js/views/level1View.html", (data)=> {
+        let home = $(".home");
+        home.addClass('animated fadeOut');
+        setTimeout(()=> {
+            app.innerHTML = data;
+        }, 500);        
+    });
+})
+
+let level2 = $(".level2");
+level2.click(()=> {
+    $.get("./js/views/level2View.html", (data)=> {
+        let home = $(".home");
+        home.addClass('animated fadeOut');
+        setTimeout(()=> {
+            app.innerHTML = data;
+        }, 500);        
+    });
+})
+
+let level3 = $(".level3");
+level3.click(()=> {
+    $.get("./js/views/level3View.html", (data)=> {
+        let home = $(".home");
+        home.addClass('animated fadeOut');
+        setTimeout(()=> {
+            app.innerHTML = data;
+        }, 500);        
+    });
+})
