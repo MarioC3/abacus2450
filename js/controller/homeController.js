@@ -1,9 +1,12 @@
-let app = $("#app")[0];
-app.innerHTML = homeViewTemplate;
+let loadHome = () => {
+    let app = $("#app");
+    $(app).load('./views/homeView.html')
+}
+loadHome();
 
 //Modal
-let getStartedButton = $(".getStartedButton");
-getStartedButton.click(()=> {
+$(document).on('click', '.getStartedButton', ()=> {
+    console.log('working')
     //open modal
     let levelModal = $(".levelModal");
     let modalContent = $('.modal-content');
@@ -17,14 +20,13 @@ getStartedButton.click(()=> {
     }
     let modalClose = $(".modal-close");
     let modalBackground = $(".modal-background")
-    modalClose.click(()=> {
+    $(document).on('click', '.modal-close', ()=> {
         closeModal();
     })
-    modalBackground.click(()=> {
+    $(document).on('click', '.modal-background', ()=> {
         closeModal();
     })
 })
-
 
 //Mobile not compatible
 let windowWidth = window.innerWidth;
@@ -35,36 +37,53 @@ if (windowWidth < 600) {
     overAllContainer.css('display', 'none');
 }
 
-//level1 choose
-let level1 = $(".level1");
-level1.click(()=> {
-    $.get("./js/views/level1View.html", (data)=> {
-        let home = $(".home");
-        home.addClass('animated fadeOut');
-        setTimeout(()=> {
-            app.innerHTML = data;
-        }, 500);        
-    });
-})
+// Router
+$(()=> {
+    let levels = Array.from(document.getElementsByClassName('level'));
 
-let level2 = $(".level2");
-level2.click(()=> {
-    $.get("./js/views/level2View.html", (data)=> {
-        let home = $(".home");
-        home.addClass('animated fadeOut');
-        setTimeout(()=> {
-            app.innerHTML = data;
-        }, 500);        
-    });
-})
+    $(document).on('click', '.level', (e)=> {
+        let id = e.currentTarget.id;
+        console.log(id)
+        history.pushState({id}, null, `./${id}`);
+        showContent(id);
+    })
 
-let level3 = $(".level3");
-level3.click(()=> {
-    $.get("./js/views/level3View.html", (data)=> {
-        let home = $(".home");
-        home.addClass('animated fadeOut');
-        setTimeout(()=> {
-            app.innerHTML = data;
-        }, 500);        
-    });
-})
+    let showContent = (id) => {
+        if (id === 'level1'){
+            let home = $(".home");
+            home.addClass('animated fadeOut');
+            setTimeout(()=> {
+                $(app).load("./views/level1View.html");
+            }, 500);
+        }
+        if (id === 'level2'){
+            let home = $(".home");
+            home.addClass('animated fadeOut');
+            setTimeout(()=> {
+                $(app).load("./views/level2View.html");
+            }, 500);
+        }
+        if (id === 'level3'){
+            let home = $(".home");
+            home.addClass('animated fadeOut');
+            setTimeout(()=> {
+                $(app).load("./views/level3View.html");
+            }, 500);
+        }
+
+        if (id === null) {
+            loadHome();
+        }
+    }
+
+    window.addEventListener('popstate', e=> {
+        showContent(e.state.id);
+    })
+
+    history.replaceState({id: null}, null, `./`)
+});
+
+
+
+
+
