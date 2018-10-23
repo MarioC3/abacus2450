@@ -40,6 +40,18 @@
     font-weight: 100;
 }
 
+.columns {
+    position: relative;
+}
+
+.columns img {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    left: 70px;
+    top: 10px;
+}
+
 .column {
     margin-bottom: 30px;
     border-radius: 5px;
@@ -51,10 +63,11 @@
     padding-left: 30px;
     cursor: pointer;
     transition: all 0.2s ease;
+    z-index: 1000;
 }
 
 .column:hover {
-    transform: translateX(50px);
+    transform: translateX(100px);
 }
 
 .column h4 {
