@@ -90,3 +90,10 @@
 .level3 {
     background: #3C91E6;
 }
+
+/* Mobile Modal */
+.notSupportedModal {
+    color: white;
+    text-align: center;
+    font-weight: 100;
+}
