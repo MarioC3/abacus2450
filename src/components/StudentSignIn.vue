@@ -18,7 +18,7 @@
         </div>
         <div class="field">
           <div class="control">
-            <button class="studentSignInButton button is-link">Sign In</button>
+            <button @click="showModal(); StudentShowSignInModal();" class="studentSignInButton button is-link">Sign In</button>
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  props: ['StudentShowSignInModal']
+  props: ['StudentShowSignInModal', 'showModal']
 }
 </script>
 

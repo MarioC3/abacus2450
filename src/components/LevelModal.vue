@@ -6,24 +6,30 @@
         <h3 class="has-text-centered">CHOSE YOUR LEVEL</h3>
         <div class="columns is-centered">
           <img src="@/assets/images/charmander.png" alt="Char-Char">
-          <router-link :to="{name: 'levels', params: {id: '1'} }" class="level column level1 is-four-fifths">
-            <h4>Level 1</h4>
-            <p>Kindergarten & 1st. Grade</p>
-          </router-link>
+          <div class="level column level1 is-four-fifths" @click="showModal()">
+            <router-link @click="showModal()" :to="{name: 'levels', params: {id: '1'} }">
+              <h4>Level 1</h4>
+              <p>Kindergarten & 1st. Grade</p>
+            </router-link>
+          </div>
         </div>
         <div class="columns is-centered">
           <img src="@/assets/images/charmeleon.png" alt="Meeleooon">
-          <router-link :to="{name: 'levels', params: {id: '2'} }" class="level column level2 is-four-fifths">
-            <h4>Level 2</h4>
-            <p>2nd. Grade & 3rd. Grade</p>
-          </router-link>
+          <div class="level column level2 is-four-fifths" @click="showModal()">
+            <router-link @click="showModal()" :to="{name: 'levels', params: {id: '2'} }">
+              <h4>Level 2</h4>
+              <p>2nd. Grade & 3rd. Grade</p>
+            </router-link>
+          </div>
         </div>
         <div class="columns is-centered">
           <img src="@/assets/images/charizard.png" alt="Chaaaaar-i-zaaardd">
-          <router-link :to="{name: 'levels', params: {id: '3'} }" class="level column level3 is-four-fifths">
-            <h4>Level 3</h4>
-            <p>4th. Grade & 5th. Grade</p>
-          </router-link>
+          <div class="level column level3 is-four-fifths" @click="showModal()">
+            <router-link :to="{name: 'levels', params: {id: '3'} }">
+              <h4>Level 3</h4>
+              <p>4th. Grade & 5th. Grade</p>
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -57,7 +63,7 @@ export default {
     margin-bottom: 30px;
     border-radius: 5px;
     height: 100px;
-    color: white;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,6 +77,13 @@ export default {
     }
     p {
       font-weight: 200;
+    }
+    .showModal {
+      width: 100%;
+      height: 100%;
+    }
+    a{
+      color: white;
     }
   }
   .column:hover {

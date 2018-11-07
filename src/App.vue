@@ -13,23 +13,27 @@
     </div>
     <!-- Sign in Modal -->
     <TeacherSignIn :TeacherShowSignInModal="TeacherShowSignInModal" v-show="TeacherSignInToggle"/>
-    <StudentSignIn :StudentShowSignInModal="StudentShowSignInModal" v-show="StudentSignInToggle"/>
+    <StudentSignIn :showModal="showModal" :StudentShowSignInModal="StudentShowSignInModal" v-show="StudentSignInToggle"/>
+    <LevelModal :showModal="showModal" v-show="levelModalToggle"/>
   </div>
 </template>
 
 <script>
 import TeacherSignIn from '@/components/TeacherSignIn.vue'
 import StudentSignIn from './components/StudentSignIn'
+import LevelModal from '@/components/LevelModal.vue'
 export default {
   components: {
     TeacherSignIn,
-    StudentSignIn
+    StudentSignIn,
+    LevelModal
   },
   data() {
     return {
       isNotMobile: true,
       TeacherSignInToggle: false,
-      StudentSignInToggle: false
+      StudentSignInToggle: false,
+      levelModalToggle: false
     }
   },
   methods: {
@@ -38,6 +42,10 @@ export default {
     },
     StudentShowSignInModal() {
       this.StudentSignInToggle = !this.StudentSignInToggle
+    },
+    showModal() {
+      this.levelModalToggle = !this.levelModalToggle
+      console.log(this.levelModalToggle)
     },
     mobileShow() {
       let windowWidth = window.innerWidth

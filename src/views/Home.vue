@@ -11,27 +11,17 @@
       <p class="animated bounceInUp has-text-grey-light font_small">Created by Team 2</p>
       <p class="animated bounceInUp has-text-grey-light font_small">CS-2450</p>
     </div>
-    <levelModal :showModal="showModal" v-show="levelModalToggle"/>
+    
   </div>
 </template>
 
 <script>
-import levelModal from '@/components/LevelModal.vue'
 export default {
-  components: {
-    levelModal
-  },
   props: ['StudentShowSignInModal'],
   data() {
-    return {
-      levelModalToggle: false
-    }
+    return {}
   },
-  methods: {
-    showModal() {
-      this.levelModalToggle = !this.levelModalToggle
-    }
-  }
+  methods: {}
 }
 </script>
 
