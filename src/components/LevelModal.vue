@@ -6,30 +6,24 @@
         <h3 class="has-text-centered">CHOSE YOUR LEVEL</h3>
         <div class="columns is-centered">
           <img src="@/assets/images/charmander.png" alt="Char-Char">
-          <div class="level column level1 is-four-fifths" @click="showModal()">
-            <router-link @click="showModal()" :to="{name: 'levels', params: {id: '1'} }">
+          <router-link @click.native="showModal()" :to="{name: 'levels', params: {id: '1'} }" class="level column level1 is-four-fifths">
               <h4>Level 1</h4>
               <p>Kindergarten & 1st. Grade</p>
-            </router-link>
-          </div>
+          </router-link>
         </div>
         <div class="columns is-centered">
           <img src="@/assets/images/charmeleon.png" alt="Meeleooon">
-          <div class="level column level2 is-four-fifths" @click="showModal()">
-            <router-link @click="showModal()" :to="{name: 'levels', params: {id: '2'} }">
+          <router-link @click.native="showModal()" :to="{name: 'levels', params: {id: '2'} }" class="level column level2 is-four-fifths">
               <h4>Level 2</h4>
               <p>2nd. Grade & 3rd. Grade</p>
-            </router-link>
-          </div>
+          </router-link>
         </div>
         <div class="columns is-centered">
           <img src="@/assets/images/charizard.png" alt="Chaaaaar-i-zaaardd">
-          <div class="level column level3 is-four-fifths" @click="showModal()">
-            <router-link :to="{name: 'levels', params: {id: '3'} }">
+          <router-link @click.native="showModal()" class="level column level3 is-four-fifths" :to="{name: 'levels', params: {id: '3'} }">
               <h4>Level 3</h4>
               <p>4th. Grade & 5th. Grade</p>
-            </router-link>
-          </div>
+          </router-link>
         </div>
       </div>
     </div>
@@ -63,7 +57,7 @@ export default {
     margin-bottom: 30px;
     border-radius: 5px;
     height: 100px;
-    
+    color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,7 +76,7 @@ export default {
       width: 100%;
       height: 100%;
     }
-    a{
+    a {
       color: white;
     }
   }
