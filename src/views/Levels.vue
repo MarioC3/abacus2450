@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>This is Level {{id}}</h1>
+  <div class="container">
+    <div class="abacus"></div>
   </div>
 </template>
 

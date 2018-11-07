@@ -6,21 +6,21 @@
         <h3 class="has-text-centered">CHOSE YOUR LEVEL</h3>
         <div class="columns is-centered">
           <img src="@/assets/images/charmander.png" alt="Char-Char">
-          <router-link @click.native="showModal()" :to="{name: 'levels', params: {id: '1'} }" class="level column level1 is-four-fifths">
+          <router-link :to="{name: 'levels', params: {id: '1'} }" class="level column level1 is-four-fifths">
               <h4>Level 1</h4>
               <p>Kindergarten & 1st. Grade</p>
           </router-link>
         </div>
         <div class="columns is-centered">
           <img src="@/assets/images/charmeleon.png" alt="Meeleooon">
-          <router-link @click.native="showModal()" :to="{name: 'levels', params: {id: '2'} }" class="level column level2 is-four-fifths">
+          <router-link :to="{name: 'levels', params: {id: '2'} }" class="level column level2 is-four-fifths">
               <h4>Level 2</h4>
               <p>2nd. Grade & 3rd. Grade</p>
           </router-link>
         </div>
         <div class="columns is-centered">
           <img src="@/assets/images/charizard.png" alt="Chaaaaar-i-zaaardd">
-          <router-link @click.native="showModal()" class="level column level3 is-four-fifths" :to="{name: 'levels', params: {id: '3'} }">
+          <router-link class="level column level3 is-four-fifths" :to="{name: 'levels', params: {id: '3'} }">
               <h4>Level 3</h4>
               <p>4th. Grade & 5th. Grade</p>
           </router-link>

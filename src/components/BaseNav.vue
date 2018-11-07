@@ -24,13 +24,25 @@
         </div>
       </div>
     </nav>
+    <!-- teacher sign in -->
+    <BaseSignIn typeOfUser="teacher" :TeacherShowSignInModal="TeacherShowSignInModal" v-show="TeacherSignInToggle">
+      <h3 slot="user" class="has-text-centered">Teacher Sign in</h3>
+      <button slot="button" @click="TeacherShowSignInModal()" class="studentSignInButton button is-link">Sign In</button> 
+    </BaseSignIn>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['TeacherShowSignInModal'],
+  data() {
+    return {
+      TeacherSignInToggle: false
+    }
+  },
   methods: {
+    TeacherShowSignInModal() {
+      this.TeacherSignInToggle = !this.TeacherSignInToggle
+    },
     toggleNav() {
       let navbarMenu = this.$refs.navbarMenu
       let navbarBurger = this.$refs.navbarBurger

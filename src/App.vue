@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <!-- nav -->
-    <BaseNav :TeacherShowSignInModal="TeacherShowSignInModal" />
+    <BaseNav />
     <!-- content -->
-    <router-view :StudentShowSignInModal="StudentShowSignInModal" v-show="isNotMobile"/>
+    <router-view v-show="isNotMobile"/>
     <!-- Mobile not supported modal -->
     <div ref="mobileModal" class="modal notSupportedModal">
       <div class="modal-background"></div>
@@ -11,42 +11,17 @@
         <h3>Program is not compatible with mobile versions yet.</h3>
       </div>
     </div>
-    <!-- Sign in Modal -->
-    <TeacherSignIn :TeacherShowSignInModal="TeacherShowSignInModal" v-show="TeacherSignInToggle"/>
-    <StudentSignIn :showModal="showModal" :StudentShowSignInModal="StudentShowSignInModal" v-show="StudentSignInToggle"/>
-    <LevelModal :showModal="showModal" v-show="levelModalToggle"/>
   </div>
 </template>
 
 <script>
-import TeacherSignIn from '@/components/TeacherSignIn.vue'
-import StudentSignIn from './components/StudentSignIn'
-import LevelModal from '@/components/LevelModal.vue'
 export default {
-  components: {
-    TeacherSignIn,
-    StudentSignIn,
-    LevelModal
-  },
   data() {
     return {
-      isNotMobile: true,
-      TeacherSignInToggle: false,
-      StudentSignInToggle: false,
-      levelModalToggle: false
+      isNotMobile: true
     }
   },
   methods: {
-    TeacherShowSignInModal() {
-      this.TeacherSignInToggle = !this.TeacherSignInToggle
-    },
-    StudentShowSignInModal() {
-      this.StudentSignInToggle = !this.StudentSignInToggle
-    },
-    showModal() {
-      this.levelModalToggle = !this.levelModalToggle
-      console.log(this.levelModalToggle)
-    },
     mobileShow() {
       let windowWidth = window.innerWidth
       if (windowWidth < 600) {
