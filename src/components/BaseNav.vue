@@ -16,7 +16,7 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a @click="showSignInModal()" class="button is-light">
+              <a @click="TeacherShowSignInModal()" class="button is-light">
                 Teacher Log in
               </a>
             </div>
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  props: ['showSignInModal'],
+  props: ['TeacherShowSignInModal'],
   methods: {
     toggleNav() {
       let navbarMenu = this.$refs.navbarMenu

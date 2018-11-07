@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view v-show="isNotMobile"/>
+    <!-- nav -->
+    <BaseNav :TeacherShowSignInModal="TeacherShowSignInModal" />
+    <!-- content -->
+    <router-view :StudentShowSignInModal="StudentShowSignInModal" v-show="isNotMobile"/>
     <!-- Mobile not supported modal -->
     <div ref="mobileModal" class="modal notSupportedModal">
       <div class="modal-background"></div>
@@ -8,17 +11,34 @@
         <h3>Program is not compatible with mobile versions yet.</h3>
       </div>
     </div>
+    <!-- Sign in Modal -->
+    <TeacherSignIn :TeacherShowSignInModal="TeacherShowSignInModal" v-show="TeacherSignInToggle"/>
+    <StudentSignIn :StudentShowSignInModal="StudentShowSignInModal" v-show="StudentSignInToggle"/>
   </div>
 </template>
 
 <script>
+import TeacherSignIn from '@/components/TeacherSignIn.vue'
+import StudentSignIn from './components/StudentSignIn'
 export default {
-  data: () => {
+  components: {
+    TeacherSignIn,
+    StudentSignIn
+  },
+  data() {
     return {
-      isNotMobile: true
+      isNotMobile: true,
+      TeacherSignInToggle: false,
+      StudentSignInToggle: false
     }
   },
   methods: {
+    TeacherShowSignInModal() {
+      this.TeacherSignInToggle = !this.TeacherSignInToggle
+    },
+    StudentShowSignInModal() {
+      this.StudentSignInToggle = !this.StudentSignInToggle
+    },
     mobileShow() {
       let windowWidth = window.innerWidth
       if (windowWidth < 600) {

@@ -1,42 +1,35 @@
 <template>
   <div class="container">
-    <Nav v-bind:showSignInModal="showSignInModal"/>
     <div class="homeWrapper">
       <img class="animated fadeIn" src="../assets/images/abacusLogo.png" alt="Abacus logo">
       <h1 class="animated bounceIn">ABACUS</h1>
       <h4 class="animated bounceIn subtitle">A learning aid for elementary students</h4>
-      <a class="animated fadeIn button" @click="showModal()">Get Started</a>
+      <div>
+        <a class="animated fadeIn button has-background-danger has-text-white">Quick Start</a>
+        <a class="animated fadeIn button " @click="StudentShowSignInModal()">Student Sign In</a>
+      </div>
       <p class="animated bounceInUp has-text-grey-light font_small">Created by Team 2</p>
       <p class="animated bounceInUp has-text-grey-light font_small">CS-2450</p>
     </div>
-    <levelModal v-bind:showModal="showModal" v-show="levelModalToggle"/>
-    <signIn v-bind:showSignInModal="showSignInModal" v-show="signInToggle"/>
+    <levelModal :showModal="showModal" v-show="levelModalToggle"/>
   </div>
 </template>
 
 <script>
-import Nav from '@/components/Nav.vue'
-import signIn from '@/components/SignIn.vue'
 import levelModal from '@/components/LevelModal.vue'
 export default {
   components: {
-    Nav,
-    signIn,
     levelModal
   },
-  data: () => {
+  props: ['StudentShowSignInModal'],
+  data() {
     return {
-      levelModalToggle: false,
-      signInToggle: false
+      levelModalToggle: false
     }
   },
   methods: {
     showModal() {
       this.levelModalToggle = !this.levelModalToggle
-    },
-    showSignInModal() {
-      this.signInToggle = !this.signInToggle
-      console.log(this.signInToggle)
     }
   }
 }
@@ -64,7 +57,7 @@ export default {
     margin-bottom: 30px;
   }
   a {
-    margin-bottom: 30px;
+    margin: 0 10px 30px;
   }
 }
 </style>

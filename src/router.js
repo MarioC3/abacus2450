@@ -1,7 +1,7 @@
-import Vue from "vue";
-import Router from "vue-router";
-import Home from "./views/Home.vue";
-import Levels from "./views/Levels.vue";
+import Vue from "vue"
+import Router from "vue-router"
+import Home from "./views/Home.vue"
+import Levels from "./views/Levels.vue"
 
 
 Vue.use(Router);
