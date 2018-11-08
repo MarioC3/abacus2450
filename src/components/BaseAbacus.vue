@@ -131,7 +131,7 @@ $abacusHeight: 650px;
       p {
         color: white;
         mix-blend-mode: overlay;
-        font-weight: 800;
+        font-weight: 100;
         font-size: 50px;
       }
     }
