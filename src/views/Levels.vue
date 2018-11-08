@@ -17,7 +17,7 @@ export default {
 .wrapper {
   margin: 30px 0 0 20px;
   h2{
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     font-weight: 100;
   }
 }
