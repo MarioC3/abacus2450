@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <h2>Level {{id}}</h2>
-    <div class="abacusWrapper">
+    <h2 class="animated bounceIn">Level {{id}}</h2>
+    <div class="abacusWrapper animated bounceIn">
       <BaseAbacus :levelId="id"/>
     </div>
   </div>
