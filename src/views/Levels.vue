@@ -1,17 +1,24 @@
 <template>
-  <div class="container">
-    <div class="abacus"></div>
+  <div class="wrapper">
+    <h2>Level {{id}}</h2>
+    <BaseAbacus :levelId="id"/>
   </div>
 </template>
 
 <script>
 export default {
   props: ['id'],
-  mounted() {
-    console.log(this.id)
-  }
+  mounted() {},
+  methods: {}
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+.wrapper {
+  margin: 30px 0 0 20px;
+  h2{
+    margin-bottom: 40px;
+    font-weight: 100;
+  }
+}
 </style>

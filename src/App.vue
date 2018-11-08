@@ -1,14 +1,16 @@
 <template>
-  <div id="app">
-    <!-- nav -->
-    <BaseNav />
-    <!-- content -->
-    <router-view v-show="isNotMobile"/>
-    <!-- Mobile not supported modal -->
-    <div ref="mobileModal" class="modal notSupportedModal">
-      <div class="modal-background"></div>
-      <div class="modal-content">
-        <h3>Program is not compatible with mobile versions yet.</h3>
+  <div class="container">
+    <div id="app">
+      <!-- nav -->
+      <BaseNav />
+      <!-- content -->
+      <router-view v-show="isNotMobile" />
+      <!-- Mobile not supported modal -->
+      <div ref="mobileModal" class="modal notSupportedModal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <h3>Program is not compatible with mobile versions yet.</h3>
+        </div>
       </div>
     </div>
   </div>
