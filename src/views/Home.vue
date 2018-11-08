@@ -53,6 +53,7 @@ export default {
   img {
     width: 75px;
     height: auto;
+    margin-bottom: 20px;
   }
   h1 {
     font-weight: 100;

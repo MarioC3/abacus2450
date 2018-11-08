@@ -74,7 +74,6 @@ $abacusHeight: 650px;
   position: relative;
   .rungs {
     height: 100%;
-    position: absolute;
     padding: $frameWidth $frameWidth + $rungMargin;
     display: flex;
     flex-direction: column;
