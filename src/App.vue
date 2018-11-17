@@ -4,7 +4,7 @@
       <!-- nav -->
       <BaseNav />
       <!-- content -->
-      <router-view v-show="isNotMobile" />
+      <router-view v-show="isNotMobile" :key="$route.fullPath"/>
       <!-- Mobile not supported modal -->
       <div ref="mobileModal" class="modal notSupportedModal">
         <div class="modal-background"></div>

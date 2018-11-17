@@ -2,23 +2,24 @@
   <div ref="abacus" class="abacus">
     <div class="post horizontalPost top"></div>
     <div class="post horizontalPost middle">
-      <div class="valWrapper"><p>{{12343}}</p></div>
+      <div class="valWrapper"><p>{{abacusCount}}</p></div>
     </div>
     <div class="post horizontalPost bottom"></div>
     <div class="post verticalPost left"></div>
     <div class="post verticalPost right"></div>
     <div ref="rungs" class="rungs">
       <div class="heavenlyRungs">
-        <div v-for="n in numberOfRungs" :key="n" class="rung">
+        <div v-for="rung in heavenlyRungs" :key="rung.base" class="rung">
           <div class="beadsWrapper">
-            <BaseBead v-for="bead in heavenlyBeads" :key="bead" class="bead"/>
+            <BaseBead v-for="bead in rung.beads" :bead="bead" :rung="rung"/>
           </div>
         </div>
       </div>
+      <div class="middlePostSeparator"></div>
       <div class="earthlyRungs">
-        <div v-for="n in numberOfRungs" :key="n" class="rung">
+        <div v-for="rung in earthlyRungs" :key="rung.base" class="rung">
           <div class="beadsWrapper">
-            <BaseBead v-for="bead in earthlyBeads" :key="bead" class="bead"/>
+            <BaseBead v-for="bead in rung.beads" :bead="bead" :rung="rung" @operationChanged="operationChanged = !operationChanged"/>
           </div>
         </div>
       </div>
@@ -27,12 +28,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import { Rung, HeavenlyBead, EarthlyBead } from '../../logic.js'
 export default {
   props: ['levelId'],
   data() {
     return {
+      heavenlyRungs: [],
+      earthlyRungs: [],
       heavenlyBeads: 2,
-      earthlyBeads: 5
+      earthlyBeads: 5,
+      operationChanged: false,
+      totalSum: 0
     }
   },
   computed: {
@@ -46,19 +53,46 @@ export default {
       if (this.levelId === '3' || this.levelId === 'sandbox') {
         return 11
       }
+    },
+    ...mapState(['abacusCount'])
+  },
+  watch: {
+    operationChanged: function() {
+      let total = 0
+      this.earthlyRungs.forEach(function(element) {
+        total += element.totalRung
+      })
+      this.heavenlyRungs.forEach(function(element) {
+        total += element.totalRung
+      })
+      this.totalSum = total
+      this.$store.dispatch('updateCount', this.totalSum)
     }
   },
   methods: {
-    forceAbacusWidth() {
-      let rungsWrapperWidth = this.$refs.rungs.clientWidth
-      this.$refs.abacus.style.width = `${rungsWrapperWidth}px`
+    fillRungs() {
+      //Heavenly Rungs
+      for (let i = this.numberOfRungs - 1; i > -1; i--) {
+        let rung = new Rung(i, this.heavenlyBeads)
+        for (let j = 0; j < rung.numOfBeads; j++) {
+          let bead = new HeavenlyBead(rung.base, j)
+          rung.beads.push(bead)
+        }
+        this.heavenlyRungs.push(rung)
+      }
+      // Earthly Rungs
+      for (let i = this.numberOfRungs - 1; i > -1; i--) {
+        let rung = new Rung(i, this.earthlyBeads)
+        for (let j = 0; j < rung.numOfBeads; j++) {
+          let bead = new EarthlyBead(rung.base, j)
+          rung.beads.push(bead)
+        }
+        this.earthlyRungs.push(rung)
+      }
     }
   },
-  updated() {
-    this.forceAbacusWidth()
-  },
   mounted() {
-    this.forceAbacusWidth()
+    this.fillRungs()
   }
 }
 </script>
@@ -78,10 +112,13 @@ $abacusHeight: 650px;
     display: flex;
     flex-direction: column;
     .heavenlyRungs {
-      height: 50%;
+      height: 187px;
+    }
+    .middlePostSeparator {
+      height: 118px;
     }
     .earthlyRungs {
-      height: 50%;
+      height: 285px;
       .beadsWrapper {
         justify-content: flex-end;
       }
@@ -118,7 +155,7 @@ $abacusHeight: 650px;
     border-radius: 10px 10px 0 0;
   }
   .middle {
-    height: $frameWidth + 50px;
+    height: 118px;
     position: absolute;
     top: $abacusHeight/3;
     z-index: 1;

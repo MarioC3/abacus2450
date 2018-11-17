@@ -1,9 +1,35 @@
 <template>
-  <div class="bead"></div>
+  <div @click="flipBead()" class="bead" ></div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: ['bead', 'rung'],
+  methods: {
+    flipBead() {
+      if (!this.bead.isFlipped) {
+        for (let i = this.bead.index; i >= 0; i--) {
+          this.rung.beads[i].isFlipped = true
+        }
+      } else if (this.bead.isFlipped) {
+        for (let i = this.bead.index; i <= this.rung.beads.length - 1; i++) {
+          this.rung.beads[i].isFlipped = false
+        }
+      }
+      this.totalOperation()
+    },
+
+    totalOperation() {
+      this.rung.totalRung = 0
+      let beadsFlipped = this.rung.beads.filter(bead => bead.isFlipped)
+      for (let i = 0; i < beadsFlipped.length; i++) {
+        this.rung.totalRung += beadsFlipped[i].val
+      }
+      this.totalSum += this.rung.totalRung
+      this.$emit('operationChanged')
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
