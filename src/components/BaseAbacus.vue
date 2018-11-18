@@ -11,7 +11,7 @@
       <div class="heavenlyRungs">
         <div v-for="rung in heavenlyRungs" :key="rung.base" class="rung">
           <div class="beadsWrapper">
-            <BaseBead v-for="bead in rung.beads" :bead="bead" :rung="rung"/>
+            <BaseBead v-for="bead in rung.beads" :bead="bead" :rung="rung" @operationChanged="operationChanged = !operationChanged"/>
           </div>
         </div>
       </div>
@@ -191,5 +191,9 @@ $abacusHeight: 650px;
     right: 0;
     border-radius: 0 10px 10px 0;
   }
+}
+
+.moveEarthlyBead {
+  transform: translateY(-35px);
 }
 </style>

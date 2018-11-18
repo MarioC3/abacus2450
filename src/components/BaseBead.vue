@@ -1,5 +1,5 @@
 <template>
-  <div @click="flipBead()" class="bead" ></div>
+  <div ref="bead" @click="flipBead()" class="bead" ></div>
 </template>
 
 <script>
@@ -7,27 +7,56 @@ export default {
   props: ['bead', 'rung'],
   methods: {
     flipBead() {
-      if (!this.bead.isFlipped) {
-        for (let i = this.bead.index; i >= 0; i--) {
-          this.rung.beads[i].isFlipped = true
+      let beadsInRung = this.$refs.bead.parentNode.children
+      if (this.bead.typeOfBead === 'earthly') {
+        if (!this.bead.isFlipped) {
+          for (let i = this.bead.index; i >= 0; i--) {
+            this.rung.beads[i].isFlipped = true
+            beadsInRung[i].classList.add('earthlyBeadsMove')
+          }
+        } else if (this.bead.isFlipped) {
+          for (let i = this.bead.index; i <= this.rung.beads.length - 1; i++) {
+            this.rung.beads[i].isFlipped = false
+            beadsInRung[i].classList.remove('earthlyBeadsMove')
+          }
         }
-      } else if (this.bead.isFlipped) {
-        for (let i = this.bead.index; i <= this.rung.beads.length - 1; i++) {
-          this.rung.beads[i].isFlipped = false
-        }
+        this.earthlyOperation()
       }
-      this.totalOperation()
+      if (this.bead.typeOfBead === 'heavenly') {
+        if (!this.bead.isFlipped) {
+          for (let i = this.bead.index; i < this.rung.beads.length; i++) {
+            this.rung.beads[i].isFlipped = true
+            beadsInRung[i].classList.add('heavenlyBeadsMove')
+          }
+        } else if (this.bead.isFlipped) {
+          for (let i = this.bead.index; i >= 0; i--) {
+            this.rung.beads[i].isFlipped = false
+            beadsInRung[i].classList.remove('heavenlyBeadsMove')
+          }
+        }
+        this.heavenlyOperation()
+      }
+      this.$emit('operationChanged')
     },
 
-    totalOperation() {
+    earthlyOperation() {
       this.rung.totalRung = 0
       let beadsFlipped = this.rung.beads.filter(bead => bead.isFlipped)
       for (let i = 0; i < beadsFlipped.length; i++) {
         this.rung.totalRung += beadsFlipped[i].val
       }
-      this.totalSum += this.rung.totalRung
-      this.$emit('operationChanged')
+    },
+
+    heavenlyOperation() {
+      this.rung.totalRung = 0
+      let beadsFlipped = this.rung.beads.filter(bead => bead.isFlipped)
+      for (let i = 0; i < beadsFlipped.length; i++) {
+        this.rung.totalRung += beadsFlipped[i].val
+      }
     }
+  },
+  mounted() {
+    this.$store.dispatch('restartAbacusCount')
   }
 }
 </script>
@@ -49,5 +78,13 @@ export default {
   // background: #614619;
   // background-image: url('../assets/images/patterns/ZenBG.png');
   box-shadow: 0px 0px 76px -16px rgba(0, 0, 0, 0.8);
+  transition: all 0.20s ease-out;
+}
+.earthlyBeadsMove {
+  transform: translateY(-35px);
+}
+
+.heavenlyBeadsMove {
+  transform: translateY(87px);
 }
 </style>

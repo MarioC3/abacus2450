@@ -13,6 +13,7 @@ export class HeavenlyBead {
     this.base = base
     this.val = Math.pow(10, this.base) * 5
     this.isFlipped = false
+    this.typeOfBead = 'heavenly'
   }
 }
 
@@ -22,5 +23,6 @@ export class EarthlyBead {
     this.base = base
     this.val = Math.pow(10, this.base)
     this.isFlipped = false
+    this.typeOfBead = 'earthly'
   }
 }

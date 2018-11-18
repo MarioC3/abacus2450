@@ -22,10 +22,5 @@ export default new Vuex.Store({
     restartAbacusCount({ commit }) {
       commit('RESET_ABACUS_COUNT')
     }
-  },
-  getters: {
-    abacusCount: state => {
-      return state.abacusCount
-    }
   }
 })
